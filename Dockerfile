@@ -21,7 +21,12 @@ COPY ./app var/www/html
 
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data var/www/html/bootstrap/cache
+
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html \
+    && ls -l /var/www/html
 
 WORKDIR /var/www/html
 
