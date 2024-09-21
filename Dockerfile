@@ -19,10 +19,12 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 COPY ./app var/www/html
 
-WORKDIR /var/www/html
-
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+WORKDIR /var/www/html
+
+CMD ["php-fpm"]
 
 EXPOSE 9000
