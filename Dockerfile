@@ -19,10 +19,6 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 COPY ./app var/www/html
 
-COPY ./app/.env.example var/www/html/.env
-
-RUN composer install
-
 WORKDIR /var/www/html
 
 RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
