@@ -21,12 +21,14 @@ Route::middleware('auth')->group(function () {
     Route::get('dashboard', [UserController::class, 'dashboard'])->name('dashboard');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('roles:dashboard');
-Route::get('/reports', [ReportsController::class, 'index'])->name('reports')->middleware('roles:reports');
-Route::get('/configuration', [ConfigurationController::class, 'index'])->name('configuration')->middleware('roles:configuration');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');//->middleware('roles:dashboard');
+Route::get('/reports', [ReportsController::class, 'index'])->name('reports');//->middleware('roles:reports');
+Route::get('/configuration', [ConfigurationController::class, 'index'])->name('configuration');//->middleware('roles:configuration');
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 

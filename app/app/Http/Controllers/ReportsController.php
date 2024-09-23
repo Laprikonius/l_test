@@ -8,6 +8,10 @@ class ReportsController extends Controller
 {
     //
     public function index() {
-        return view('reports', ['message' => 'Welcome to Reports']);
+        $user = auth()->user()->role->name;
+        if ($user == 'owner' || $user == 'employee') {
+            return view('reports', ['message' => 'Welcome to Reports']);
+        }
+        return abort(403, 'Необходимо авторизоваться.');
     }
 }

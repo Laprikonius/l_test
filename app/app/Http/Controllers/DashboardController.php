@@ -8,6 +8,11 @@ class DashboardController extends Controller
 {
     //
     public function index() {
-        return view('dashboard', ['message' => 'Welcome to Dashboard']);
+        $user = auth()->user()->role->name;
+        if ($user == 'owner' || $user == 'admin' || $user == 'employee') {
+            return view('dashboard', ['message' => 'Welcome to Dashboard']);
+        }
+        //return view('dashboard', ['message' => 'Welcome to Dashboard']);
+        return abort(403, 'Необходимо авторизоваться.');
     }
 }

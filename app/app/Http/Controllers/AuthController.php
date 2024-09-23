@@ -61,4 +61,11 @@ class AuthController extends Controller
             'email' => 'Неверные учетные данные.',
         ]);
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        return redirect('/'); // Перенаправление после выхода
+    }
 }
