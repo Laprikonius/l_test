@@ -13,6 +13,6 @@ class ConfigurationController extends Controller
             return view('configuration', ['message' => 'Welcome to Configuration']);
         }
         //return view('dashboard', ['message' => 'Welcome to Dashboard']);
-        return abort(403, 'Необходимо авторизоваться.');
+        return abort(403, 'У вас нет прав для просмотра.');
     }
 }

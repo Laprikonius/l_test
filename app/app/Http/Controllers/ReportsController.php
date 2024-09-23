@@ -12,6 +12,6 @@ class ReportsController extends Controller
         if ($user == 'owner' || $user == 'employee') {
             return view('reports', ['message' => 'Welcome to Reports']);
         }
-        return abort(403, 'Необходимо авторизоваться.');
+        return abort(403, 'У вас нет прав для просмотра.');
     }
 }
