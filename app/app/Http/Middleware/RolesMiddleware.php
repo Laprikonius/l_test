@@ -19,7 +19,7 @@ class RolesMiddleware
             return redirect('login');
         }
 
-        $userRole = auth()->user()->roles->name;
+        $userRole = auth()->user()->role->name;
         $rolesHierarchy = [
             'owner' => ['dashboard', 'reports', 'configuration'],
             'admin' => ['dashboard', 'configuration'],
