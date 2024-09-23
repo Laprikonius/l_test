@@ -13,10 +13,27 @@
         @if (Route::has('login'))
             <nav class="-mx-3 flex flex-1 justify-end">
                 @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                        Dashboard
-                    </a>
+                    @if (
+                        $user =
+                            auth()->user()->role->name == 'owner' ||
+                            ($user = auth()->user()->role->name == 'admin' || ($user = auth()->user()->role->name == 'employee')))
+                        <a href="{{ url('/dashboard') }}"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Dashboard
+                        </a>
+                    @endif
+                    @if ($user = auth()->user()->role->name == 'owner' || ($user = auth()->user()->role->name == 'employee'))
+                        <a href="{{ url('/reports') }}"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Reports
+                        </a>
+                    @endif
+                    @if ($user = auth()->user()->role->name == 'owner' || ($user = auth()->user()->role->name == 'admin'))
+                        <a href="{{ url('/configuration') }}"
+                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                            Configuration
+                        </a>
+                    @endif
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit">Выйти</button>
